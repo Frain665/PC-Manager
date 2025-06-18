@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCC>
+    <qresource prefix="/styles">
+        <!-- Здесь будут ваши CSS файлы когда добавите их -->
+        <!-- Пример:
+        <file>main.css</file>
+        <file>dark_theme.css</file>
+        -->
+    </qresource>
+    <qresource prefix="/icons">
+        <!-- Здесь будут иконки -->
+        <!-- Пример:
+        <file>app_icon.png</file>
+        <file>close.png</file>
+        -->
+    </qresource>
+</RCC>
