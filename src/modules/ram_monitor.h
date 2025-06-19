@@ -6,37 +6,28 @@
 #include <QObject>
 #include <QTimer>
 #include <memory>
+#include <cstdint>
 
-class RAMMonitor : public QObject
-{
-    Q_OBJECT
+struct RamInfo {
+    uint64_t totalMemory;
+    uint64_t usedMemory;
+    uint64_t freeMemory;
+    double usagePercentage;
+    uint64_t totalSwap;
+    uint64_t usedSwap;
+};
 
+class RamMonitor {
 public:
-    explicit RAMMonitor(QObject* parent = nullptr);
-    ~RAMMonitor();
+    RamMonitor();
 
-    void startMonitoring(int intervalMs = 1000);
-    void stopMonitoring();
-
-    double getTotalRAM() const;    
-    double getUsedRAM() const;     
-    double getFreeRAM() const;     
-    double getRAMUsage() const;    
-
-signals:
-    void ramDataUpdated(double totalGB, double usedGB, double freeGB, double usagePercent);
-
-private slots:
-    void updateRAMData();
+    double getRamUsage();
+    RamInfo getRamInfo();
 
 private:
-    void fetchRAMData();
+    void updateRamStats();
 
-    QTimer* m_timer;
-    double m_totalRAM;    
-    double m_usedRAM;     
-    double m_freeRAM;     
-    double m_usagePercent;
+    RamInfo m_currentInfo;
 };
 
 #endif // RAM_MONITOR_H
